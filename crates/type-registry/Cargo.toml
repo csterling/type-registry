@@ -14,4 +14,4 @@ macro = ["type-registry-register-macro"]
 [dependencies]
 generic_static = { workspace = true }
 linkme = { workspace = true }
-type-registry-register-macro = { path = "../type-registry-register-macro", optional = true }
+type-registry-register-macro = { version = "0.1.0", path = "../type-registry-register-macro", optional = true }
