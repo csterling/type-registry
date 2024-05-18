@@ -38,6 +38,12 @@ impl<R: Registry + ?Sized> RegistryEntry<R> {
         self.raw_entry
     }
 
+    /// Gets the [ID](RegistryId) of the [registry](Registry) to which this [entry](RegistryEntry)
+    /// is [registered](crate::Registered).
+    pub fn registry_id(&self) -> RegistryId {
+        self.raw_entry.registry_id()
+    }
+
     /// Gets the [ID](RegistrationId) of this entry.
     pub fn registration_id(&self) -> RegistrationId<R> {
         // SAFETY: Self's invariant that raw_entry is for R
