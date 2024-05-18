@@ -1,2 +1,2 @@
 # type-registry
-Static registration of types in Rust
+Static registration of types in Rust.
