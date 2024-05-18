@@ -41,7 +41,6 @@ impl RegistryInfo {
 
 impl PartialEq for RegistryInfo {
     fn eq(&self, other: &Self) -> bool {
-        &self.id == &other.id
+        self.type_id() == other.type_id()
     }
 }
-
