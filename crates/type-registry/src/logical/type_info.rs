@@ -11,7 +11,7 @@ pub trait TypeInfo: Any + Sync {
 // be used with this crate. The notable exception being dyn TypeInfo, but its implementation is
 // deferring to this one as required.
 
-impl<T: 'static + Sync> TypeInfo for T {
+impl<T: Any + Sync> TypeInfo for T {
     fn as_any(&self) -> &(dyn Any + Sync) {
         self
     }
