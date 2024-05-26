@@ -1,6 +1,6 @@
 [package]
 name = "type-registry"
-version = "0.1.1"
+version = "0.2.0"
 edition = "2021"
 license = "Apache-2.0"
 description = "Static type registration"
@@ -15,4 +15,4 @@ macro = ["type-registry-register-macro"]
 [dependencies]
 generic_static = { workspace = true }
 linkme = { workspace = true }
-type-registry-register-macro = { version = "0.1.0", path = "../type-registry-register-macro", optional = true }
+type-registry-register-macro = { version = "0.2.0", path = "../type-registry-register-macro", optional = true }

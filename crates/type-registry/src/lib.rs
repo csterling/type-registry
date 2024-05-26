@@ -21,7 +21,7 @@
 //!
 //! struct LenAnalyser;
 //!
-//! impl Registered<StringAnalyserRegistry> for LenAnalyser {
+//! unsafe impl Registered<StringAnalyserRegistry> for LenAnalyser {
 //!     fn register() -> Registration<StringAnalyserRegistry, Self> {
 //!         // NOTE: Can't use generic 'Self' type here
 //!         registration!(StringAnalyserRegistry, LenAnalyser)
@@ -38,7 +38,7 @@
 //!
 //! struct NumFinderAnalyser;
 //!
-//! impl Registered<StringAnalyserRegistry> for NumFinderAnalyser {
+//! unsafe impl Registered<StringAnalyserRegistry> for NumFinderAnalyser {
 //!     fn register() -> Registration<StringAnalyserRegistry, Self> {
 //!         // NOTE: Can't use generic 'Self' type here
 //!         registration!(StringAnalyserRegistry, NumFinderAnalyser)

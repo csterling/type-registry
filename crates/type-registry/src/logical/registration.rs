@@ -49,7 +49,7 @@ impl<
 ///
 /// struct MyType;
 ///
-/// impl Registered<MyRegistry> for MyType {
+/// unsafe impl Registered<MyRegistry> for MyType {
 ///     fn register() -> Registration<MyRegistry, Self> {
 ///         registration!(MyRegistry, MyType)
 ///     }

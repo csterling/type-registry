@@ -68,7 +68,7 @@ dependencies = [
 
 [[package]]
 name = "type-registry"
-version = "0.1.1"
+version = "0.2.0"
 dependencies = [
  "generic_static",
  "linkme",
@@ -77,7 +77,7 @@ dependencies = [
 
 [[package]]
 name = "type-registry-register-macro"
-version = "0.1.0"
+version = "0.2.0"
 dependencies = [
  "proc-macro2",
  "quote",

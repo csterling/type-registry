@@ -93,7 +93,7 @@ pub fn register(attr: TokenStream, input: TokenStream) -> TokenStream {
     quote!(
         #input
         
-        impl #crate_::Registered<#registry> for #ident {
+        unsafe impl #crate_::Registered<#registry> for #ident {
             fn register() -> #crate_::Registration<#registry, Self> {
                  #crate_::registration!(#registry, #ident)
             }

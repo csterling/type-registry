@@ -1,3 +1,4 @@
+use std::any::{type_name, TypeId};
 use std::collections::HashMap;
 use std::ops::ControlFlow;
 use crate::logical::registration_id::RegistrationId;
@@ -25,7 +26,7 @@ pub trait Index<R: Registry + ?Sized>: 'static {
 }
 
 impl<R: Registry + ?Sized> Index<R> for RawRegistryEntry {
-    type Storage = HashMap<&'static RawRegistryEntry, RegistrationId<R>>;
+    type Storage = HashMap<TypeId, RegistrationId<R>>;
 
     fn allocate() -> Self::Storage {
         HashMap::new()
@@ -36,7 +37,11 @@ impl<R: Registry + ?Sized> Index<R> for RawRegistryEntry {
         id: RegistrationId<R>,
         entry: RegistryEntry<R>
     ) -> ControlFlow<()> {
-        storage.insert(entry.raw(), id);
+        if storage.insert(entry.raw().type_id(), id).is_some() {
+            let registry = type_name::<R>();
+            let name = entry.raw().type_name();
+            panic!("duplicate '{registry}' registration for '{name}'")
+        };
         ControlFlow::Continue(())
     }
 }

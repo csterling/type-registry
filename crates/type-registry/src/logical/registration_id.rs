@@ -1,3 +1,4 @@
+use std::any::TypeId;
 use std::borrow::Borrow;
 use std::fmt::{Debug, Display, Formatter};
 use std::hash::{Hash, Hasher};
@@ -49,15 +50,20 @@ impl<R: Registry + ?Sized> RegistrationId<R> {
     }
 
     pub fn of<T: Registered<R> + ?Sized>() -> Self {
-        // SAFETY: entry is created for R
+        // SAFETY: T is registered to R
         unsafe {
-            Self::from_raw_entry_unchecked(&RawRegistryEntry::new::<R, T>())
+            Self::from_type_id_unchecked(TypeId::of::<T>())
         }
     }
 
     /// SAFETY: raw_entry must be for R
     pub(crate) unsafe fn from_raw_entry_unchecked(raw_entry: &RawRegistryEntry) -> Self {
-        *R::index::<RawRegistryEntry>().get(raw_entry).expect("type is registered")
+        Self::from_type_id_unchecked(raw_entry.type_id())
+    }
+
+    /// SAFETY: type_id must be a type registered to R
+    pub(crate) unsafe fn from_type_id_unchecked(type_id: TypeId) -> Self {
+        *R::index::<RawRegistryEntry>().get(&type_id).expect("type is registered")
     }
 }
 
